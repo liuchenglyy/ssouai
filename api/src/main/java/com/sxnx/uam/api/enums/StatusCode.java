@@ -6,7 +6,7 @@ package com.sxnx.uam.api.enums;
 * 作者：duanwenhong(段文红)
 * 邮件：duanwh@primeton.com
 * 时间：2020-2-10 9:26
-* 描述：
+* 描述：返回信息枚举类
 */
 public enum StatusCode {
 

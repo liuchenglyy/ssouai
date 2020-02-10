@@ -26,7 +26,7 @@ public class Constant {
     //token有效时间
     public static final long JWT_TTL = 3600 * 1000;
 
-    public static final String TOKEN_ISSUER = "程序员实战基地";
+    public static final String TOKEN_ISSUER = "测试下";
 
     //token失效的时间：ms为单位
     public static final Long ACCESS_TOKEN_EXPIRE = 60000L;

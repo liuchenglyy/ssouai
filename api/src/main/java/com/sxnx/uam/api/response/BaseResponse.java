@@ -9,7 +9,7 @@ import com.sxnx.uam.api.enums.StatusCode;
 * 作者：duanwenhong(段文红)
 * 邮件：duanwh@primeton.com
 * 时间：2020-2-10 9:27
-* 描述：
+* 描述：公共返回数据集
 */
 public class BaseResponse<T> {
 
