@@ -39,20 +39,8 @@ public class UserRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         final String userName = token.getUsername();
         final String password = String.valueOf(token.getPassword());
-
-        log.info("--shiro 用户身份认证，当前用户名={} 密码={} --", userName, password);
-
-        User user = userMapper.selectByUserName(userName);
-        if (user == null) {
-            throw new UnknownAccountException("当前用户不存在！");
-        }
-        if (!password.equals(user.getPassword())) {
-            throw new IncorrectCredentialsException("用户名密码不匹配！");
-        }
-
-        //验证成功
-        user.setPassword(null);
-        return new SimpleAuthenticationInfo(user, password, getName());
+        AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userName, password, getName());
+        return authenticationInfo;
     }
 }
 

@@ -93,23 +93,29 @@ public class ShiroRedisConfig implements EnvironmentAware {
 
 
     //过滤链配置
-    @Bean("shiroFilter")
+    @Bean
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
 
         //用户访问没有经过授权的接口或者url时跳转的链接
-        //shiroFilter.setUnauthorizedUrl("");
+        shiroFilter.setUnauthorizedUrl("/error/403");
 
         //设定用户没有经过登录认证时的跳转链接
-        shiroFilter.setLoginUrl("/error/unauth");
+        shiroFilter.setLoginUrl("/login");
 
         Map<String, String> filterChainDefinitionMap = new HashMap();
 
-        filterChainDefinitionMap.put("/shiro/login", "anon");
+        filterChainDefinitionMap.put("/uam/login", "anon");
         filterChainDefinitionMap.put("/shiro/unauth", "anon");
         filterChainDefinitionMap.put("/shiro/logout", "anon");
-
+        filterChainDefinitionMap.put("/static/*", "anon");
+        //filterChainDefinitionMap.put("/static/*", "anon");
+        filterChainDefinitionMap.put("/data/**", "anon");
+        filterChainDefinitionMap.put("/files/**", "anon");
+        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/plugins/**", "anon");
+        filterChainDefinitionMap.put("/resources/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
 

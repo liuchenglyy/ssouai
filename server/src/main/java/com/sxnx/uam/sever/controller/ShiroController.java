@@ -11,6 +11,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ import java.util.Map;
  * 描述： shiro session 认证模式
  */
 @RestController
-@RequestMapping("shiro")
+@RequestMapping("uam")
 public class ShiroController extends AbstractController {
 
     @Autowired
@@ -36,6 +37,7 @@ public class ShiroController extends AbstractController {
     //用户登录
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public BaseResponse login(@RequestParam String userName, @RequestParam String password) {
+
         if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
             return new BaseResponse(StatusCode.UserNamePasswordNotBlank);
         }
@@ -44,7 +46,7 @@ public class ShiroController extends AbstractController {
             //交由shiro的组件/api进行实现
             Subject subject = SecurityUtils.getSubject();
             if (!subject.isAuthenticated()) {
-                UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+                UsernamePasswordToken token = new UsernamePasswordToken(userName, "2322323");
                 subject.login(token);
             }
 
