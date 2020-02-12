@@ -103,19 +103,18 @@ public class ShiroRedisConfig implements EnvironmentAware {
 
         //设定用户没有经过登录认证时的跳转链接
         shiroFilter.setLoginUrl("/login");
-
+        shiroFilter.setSuccessUrl("/success/index");
         Map<String, String> filterChainDefinitionMap = new HashMap();
 
         filterChainDefinitionMap.put("/uam/login", "anon");
-        filterChainDefinitionMap.put("/shiro/unauth", "anon");
-        filterChainDefinitionMap.put("/shiro/logout", "anon");
         filterChainDefinitionMap.put("/static/*", "anon");
-        //filterChainDefinitionMap.put("/static/*", "anon");
-        filterChainDefinitionMap.put("/data/**", "anon");
-        filterChainDefinitionMap.put("/files/**", "anon");
-        filterChainDefinitionMap.put("/images/**", "anon");
+        filterChainDefinitionMap.put("/css/**", "anon");
+        filterChainDefinitionMap.put("/font-awesome/**", "anon");
+        filterChainDefinitionMap.put("/fonts/**", "anon");
+        filterChainDefinitionMap.put("/img/**", "anon");
+        filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/plugins/**", "anon");
-        filterChainDefinitionMap.put("/resources/**", "anon");
+        filterChainDefinitionMap.put("/tools/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
 

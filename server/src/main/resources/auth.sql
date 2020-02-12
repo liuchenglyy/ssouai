@@ -76,3 +76,21 @@ INSERT INTO `user` VALUES ('2', 'jack', '123456', '15627284602', '15627284602@12
 INSERT INTO `user` VALUES ('3', 'linsen', 'linsen', '15627284603', '1948831260@qq.com', '1', '2019-08-30 14:42:47', null);
 INSERT INTO `user` VALUES ('5', 'linsen2', 'linsen2', '15627284603', '1948831260@qq.com', '1', '2019-08-30 14:50:57', null);
 INSERT INTO `user` VALUES ('8', 'steadyjack', '123456', '15627284603', '1948831260@qq.com', '1', '2019-09-10 10:36:52', null);
+
+
+DROP TABLE IF EXISTS `uam_user`;
+CREATE TABLE `user` (
+  `usercode` varchar(10) NOT NULL,
+  `username` varchar(100)  NOT NULL COMMENT '用户名',
+  `sex` varchar(100)  NOT NULL COMMENT '用户性别',
+  `orgcode` varchar(20) CHARACTER SET utf8mb4 NOT NULL COMMENT '密码',
+  `cardno` varchar(50) NOT NULL COMMENT '手机号',
+  `email` varchar(100) CHARACTER SET utf8mb4 NOT NULL COMMENT '邮箱',
+  `phone` tinyint(11) DEFAULT '1' COMMENT '是否有效(1=是；0=否)',
+  `startdate` datetime DEFAULT NULL COMMENT '创建时间',
+  `enddate` timestamp NULL DEFAULT NULL COMMENT '更新时间',
+  `loginsyscode` varchar(500)  NOT NULL COMMENT '可登陆系统',
+  `loca` varchar(100)  NOT NULL COMMENT '用户名',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_user_name` (`user_name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户信息表';

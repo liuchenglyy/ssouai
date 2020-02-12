@@ -14,7 +14,7 @@ public enum StatusCode {
     Fail(-1,"失败"),
     InvalidParams(201,"非法的参数!"),
 
-    UserNamePasswordNotBlank(50000,"账户密码不能为空!"),
+    UserNamePasswordNotBlank(50000,"用户账号或密码不能为空!"),
     AccessTokenNotBlank(50001,"accessToken必填，请在请求头header中塞入该字段"),
 
     TokenValidateExpireToken(60001,"Token已过期"),

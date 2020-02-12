@@ -29,13 +29,11 @@ public class ErrorController {
     public String error404() {
         return "404";
     }
+
     @RequestMapping(value = "/error/403", method = RequestMethod.GET)
     public String error403() {
         return "403";
     }
 
-    @RequestMapping(value="/login",method = RequestMethod.GET)
-    public String unauth() {
-        return "login";
-    }
+
 }

@@ -11,10 +11,12 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -37,11 +39,13 @@ public class ShiroController extends AbstractController {
     //用户登录
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public BaseResponse login(@RequestParam String userName, @RequestParam String password) {
-
+        ModelAndView mv = new ModelAndView();
         if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
-            return new BaseResponse(StatusCode.UserNamePasswordNotBlank);
+
         }
         BaseResponse response = new BaseResponse(StatusCode.Success);
+
+
         try {
             //交由shiro的组件/api进行实现
             Subject subject = SecurityUtils.getSubject();
@@ -53,12 +57,16 @@ public class ShiroController extends AbstractController {
             if (subject.isAuthenticated()) {
                 response.setData(SecurityUtils.getSubject().getPrincipal());
             }
+            mv.setViewName("redirect:/success/index");
+            mv.addObject("response",response);
         } catch (Exception e) {
             response = new BaseResponse(StatusCode.Fail.getCode(), e.getMessage());
+            mv.addObject("response",response);
         }
-
+        response.setData("http://localhost:8084/sxnxsso/success/index");
         return response;
     }
+
 
     //访问需要被授权的资源
     @RequestMapping(value = "auth", method = RequestMethod.GET)
