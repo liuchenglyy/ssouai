@@ -115,6 +115,7 @@ public class ShiroRedisConfig implements EnvironmentAware {
         filterChainDefinitionMap.put("/js/**", "anon");
         filterChainDefinitionMap.put("/plugins/**", "anon");
         filterChainDefinitionMap.put("/tools/**", "anon");
+        filterChainDefinitionMap.put("/qrcode/**", "anon");
         filterChainDefinitionMap.put("/**", "authc");
         shiroFilter.setFilterChainDefinitionMap(filterChainDefinitionMap);
 
