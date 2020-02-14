@@ -94,3 +94,12 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_user_name` (`user_name`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+
+CREATE TABLE `blacklist` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `blacklist_type` VARCHAR(4) NOT NULL COMMENT '黑名单类型 0 用户黑名单 1 厂商黑名单 2 设备黑名单',
+  `blacklist_name` VARCHAR(128) NOT NULL COMMENT '黑名单名称',
+  `create_time` DATETIME DEFAULT NULL COMMENT '创建时间',
+  `create_userid`  VARCHAR(128)  COMMENT '黑名单创建人',
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COMMENT='认证黑名单表';
